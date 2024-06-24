@@ -1,7 +1,7 @@
-const { DataSource, DataSourceOptions } = require('typeorm');
-const { configService } = require('./config/config.service');
+import { DataSource, DataSourceOptions } from 'typeorm';
+import { configService } from './config/config.service';
 
-export const AppDataSource = new DataSource(configService.getTypeOrmConfig() as typeof DataSourceOptions);
+export const AppDataSource = new DataSource(configService.getTypeOrmConfig() as DataSourceOptions);
 AppDataSource.initialize()
   .then(() => {
     console.log('Data Source has been initialized!');
