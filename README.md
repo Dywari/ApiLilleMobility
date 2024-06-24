@@ -55,5 +55,4 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
-https://thomasperrot.medium.com/installer-postgresql-et-pgadmin-avec-docker-sur-windows-ff5d49dadba9
 https://medium.com/@gausmann.simon/nestjs-typeorm-and-postgresql-full-example-development-and-project-setup-working-with-database-c1a2b1b11b8f
