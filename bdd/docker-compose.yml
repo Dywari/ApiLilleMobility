@@ -9,6 +9,7 @@ services: # Ici, nous retrouvons les services que nous souhaitons déployer
     environment: # Les variables d'environment
       POSTGRES_USER: ${POSTGRES_USER:-postgres} # Changez postgres après le tiret par le nom d'utilisateur que vous souhaitez
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-motdepasse} # Changez motdepasse après le tiret par le mot de passe que vous souhaitez
+      POSTGRES_DB: ${POSTGRES_DATABASE:-postgres}
       PGDATA: /data/postgres # Ne changez pas
     volumes: # Les volumes de stockage utilisés
        - postgres:/data/postgres # Nous lions le volume nommé postgres vers le chemin /data/postgres dans le containeur

@@ -3,6 +3,7 @@ require('dotenv').config({
   path: require('path').resolve(__dirname, './../../.env'),
 });
 import { DataSourceOptions } from 'typeorm';
+import { User } from '../model/user/user.entity';
 
 class ConfigService {
   constructor(
@@ -43,13 +44,9 @@ class ConfigService {
       username: this.getValue('POSTGRES_USER'),
       password: this.getValue('POSTGRES_PASSWORD'),
       database: this.getValue('POSTGRES_DATABASE'),
-
-      entities: ['**/*.entity{.ts,.js}'],
-
+      entities: [User],
+      migrations: [__dirname + '/migration/**/*.ts'],
       migrationsTableName: 'migration',
-
-      migrations: ['src/migration/*.ts'],
-
       ssl: this.isProduction(),
     };
   }
