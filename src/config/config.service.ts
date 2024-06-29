@@ -3,7 +3,8 @@ require('dotenv').config({
   path: require('path').resolve(__dirname, './../../.env'),
 });
 import { DataSourceOptions } from 'typeorm';
-import { User } from '../model/user/user.entity';
+import { Vlille } from 'src/model/vlille/vlille';
+import { Parking } from 'src/model/parking/parking';
 
 class ConfigService {
   constructor(
@@ -14,7 +15,6 @@ class ConfigService {
 
   private getValue(key: string, throwOnMissing = true): string {
     const value = this.env[key] ?? '';
-    console.log(value);
     if (!value && throwOnMissing) {
       throw new Error(`config error - missing env.${key}`);
     }
@@ -38,13 +38,12 @@ class ConfigService {
   public getTypeOrmConfig(): TypeOrmModuleOptions | DataSourceOptions {
     return {
       type: 'postgres',
-
       host: this.getValue('POSTGRES_HOST'),
       port: parseInt(this.getValue('POSTGRES_PORT')),
       username: this.getValue('POSTGRES_USER'),
       password: this.getValue('POSTGRES_PASSWORD'),
       database: this.getValue('POSTGRES_DATABASE'),
-      entities: [User],
+      entities: [Vlille, Parking],
       migrations: [__dirname + '/migration/**/*.ts'],
       migrationsTableName: 'migration',
       ssl: this.isProduction(),
