@@ -4,7 +4,7 @@ import { plainToInstance } from 'class-transformer';
 
 @Entity()
 export class Parking extends BaseEntity {
-  @Column()
+  @Column({ nullable: true })
   ville: string;
 
   @Column()

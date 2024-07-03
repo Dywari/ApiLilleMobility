@@ -14,8 +14,14 @@ export class ParkingService {
   ) { }
 
   findAll(): Promise<Parking[]> {
-    // return this.parkingRepository.find();
-    return this.getParkingFromOpenData();
+    return this.parkingRepository.find().then((parkings) => {
+      if (parkings.length === 0) {
+        return this.getAndSaveParkingFromOpenData();
+      } else {
+        return parkings;
+      }
+    })
+
   }
 
   findOne(id: string): Promise<Parking> {
@@ -26,13 +32,20 @@ export class ParkingService {
     return this.parkingRepository.save(parking);
   }
 
-  private getParkingFromOpenData(): Promise<Parking[]> {
+  createEntities(parking: Parking[]): Promise<Parking[]> {
+    return this.parkingRepository.save(parking);
+  }
+
+  private getAndSaveParkingFromOpenData(): Promise<Parking[]> {
     return this.httpService.get('https://data.lillemetropole.fr/geoserver/wfs?SERVICE=WFS&REQUEST=GetFeature&VERSION=2.0.0&TYPENAMES=mel_mobilite_et_transport%3Aparking&OUTPUTFORMAT=application%2Fjson')
       .pipe(
         map((response) => {
-          const parkings = Parking.JsonToObjects(response.data.features);
+          console.log(response.data.features);
+          const parkings = response.data.features.map((JsonParking) => {
+            return Parking.JsonToObject(JsonParking['properties']);
+          })
+          this.createEntities(parkings);
           return parkings;
-          //todo un truc
         }),
         catchError((error) => {
           throw new Error(error);
