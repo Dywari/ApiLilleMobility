@@ -1,10 +1,10 @@
-import { Entity, Column } from 'typeorm';
+import { Entity, Column, Unique } from 'typeorm';
 import { BaseEntity } from '../base.entity';
 import { plainToInstance } from 'class-transformer';
 
 @Entity()
 export class Parking extends BaseEntity {
-  @Column({ nullable: true })
+  @Column()
   ville: string;
 
   @Column()
@@ -15,6 +15,15 @@ export class Parking extends BaseEntity {
 
   @Column()
   nbr_libre: number;
+
+  @Column('decimal', { precision: 10, scale: 6 })
+  longitude: number;
+
+  @Column('decimal', { precision: 10, scale: 6 })
+  latitude: number;
+
+  @Column()
+  dtdate: string;
 
   public static JsonToObjects(json: any): Parking[] {
     return plainToInstance(Parking, json) as unknown as Parking[];

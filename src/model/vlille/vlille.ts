@@ -1,3 +1,4 @@
+import { plainToInstance } from 'class-transformer';
 import { BaseEntity } from '../base.entity';
 import { Entity, Column } from 'typeorm';
 
@@ -25,5 +26,14 @@ export class Vlille extends BaseEntity {
   y: number;
 
   @Column()
-  date_modification: Date;
+  date_modification: string;
+
+
+  public static JsonToObjects(json: any): Vlille[] {
+    return plainToInstance(Vlille, json) as unknown as Vlille[];
+  }
+
+  public static JsonToObject(json: any): Vlille {
+    return plainToInstance(Vlille, json);
+  }
 }

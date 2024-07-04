@@ -1,10 +1,9 @@
-import { PrimaryGeneratedColumn } from 'typeorm';
+import { PrimaryColumn, PrimaryGeneratedColumn, Unique } from 'typeorm';
 import { Column } from 'typeorm';
-export abstract class BaseEntity {
-  @PrimaryGeneratedColumn()
-  objectid: number;
 
-  @Column()
+@Unique(['id'])
+export abstract class BaseEntity {
+  @PrimaryColumn()
   id: string;
 
   @Column()
@@ -19,12 +18,4 @@ export abstract class BaseEntity {
   @Column()
   etat: string;
 
-  @Column('decimal', { precision: 10, scale: 6 })
-  longitude: number;
-
-  @Column('decimal', { precision: 10, scale: 6 })
-  latitude: number;
-
-  @Column()
-  dtdate: Date;
 }
