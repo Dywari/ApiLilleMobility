@@ -14,13 +14,13 @@ export class VlilleService {
   ) { }
 
   findAll(): Promise<Vlille[]> {
-    return this.stationVlilleRepository.find().then((vlilles) => {
+    return this.stationVlilleRepository.createQueryBuilder('vlille').where('vlille.etat_connexion = :connecte', { connecte: 'CONNECTÉ' }).getMany().then((vlilles) => {
       if (vlilles.length === 0 || this.checkIfneedRefresh(vlilles[0])) {
         return this.getAndSaveVlilleFromOpenData();
       } else {
         return vlilles;
       }
-    });
+    })
   }
 
   private checkIfneedRefresh(vlille: Vlille): boolean {
