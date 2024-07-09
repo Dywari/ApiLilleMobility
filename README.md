@@ -10,6 +10,25 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+
+## Project Description ( WIP )
+
+ApiLilleMobility is a demo project designed to showcase my backend development skills using NestJS. This API fetches real-time open data from the city of Lille, including V'lille bike availability and parking space availability. The API is designed to be consumed by a future front-end application.
+
+Features
+- Real-time Data: Fetches real-time data for V'lille bike availability and parking space availability.
+- NestJS Framework: Built with NestJS for a robust and scalable architecture.
+- PostgreSQL: Utilizes PostgreSQL for database management.
+- Docker: Uses Docker and Docker Compose for database setup and simplified development.
+- TypeORM: Implements TypeORM for database interactions.
+- Data Transformations: Utilizes class-transformer for data serialization and transformation.
+- Reactive Programming: Employs RxJS for managing asynchronous data streams.
+- Database Migrations: Supports database migrations to manage schema changes.
+
+
+
+
+
 ## Installation
 
 ```bash
