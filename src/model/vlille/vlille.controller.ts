@@ -1,10 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { VlilleService } from './vlille.service';
 import { Vlille } from './vlille';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Controller('vlille')
+@UseGuards(JwtAuthGuard)
 export class VlilleController {
-  constructor(private readonly vlilleService: VlilleService) {}
+  constructor(private readonly vlilleService: VlilleService) { }
 
   @Get()
   findAll(): Promise<Vlille[]> {
